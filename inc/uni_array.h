@@ -57,10 +57,10 @@ Uni_array<T>::~Uni_array()
     }
 }
 template <class T>
-void Uni_array<T>::show()
+void Uni_array<T>::show()       /*如果想实现比较好的show效果应该要 模板特化 */
 {
     for(int i=0;i<this->m_Capacity;i++)
-        std::cout << m_ptr[i]<<std::endl;
+        std::cout << m_ptr[i] << std::endl;
 }
 
 
