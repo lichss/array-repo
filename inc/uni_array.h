@@ -16,9 +16,9 @@ public:
     Uni_array(class Uni_array<T> & n);
 
     ~Uni_array();
-    void show(int);
+    void show();
     T& operator[] (int index);
-    void operator= (Uni_array&);
+    Uni_array& operator= (Uni_array&);
 private:
     T& visit(int index);
 
@@ -47,14 +47,19 @@ Uni_array<T>::Uni_array(Uni_array & uarr)    /**/
 template <class T>
 Uni_array<T>::~Uni_array()
 {
-    if(this->m_ptr != nullptr)
+    if(this->m_ptr != nullptr){
+        printf("delete member ptr:%X\n",this->m_ptr);
         delete[] this->m_ptr;
-    this->m_ptr = nullptr;
+        this->m_ptr = nullptr;
+    }
+    else{
+        printf("Warning: a nullptr\n");
+    }
 }
 template <class T>
-void Uni_array<T>::show(int n)
+void Uni_array<T>::show()
 {
-    for(int i=0;i<n;i++)
+    for(int i=0;i<this->m_Capacity;i++)
         std::cout << m_ptr[i]<<std::endl;
 }
 
@@ -72,7 +77,7 @@ T& Uni_array<T>::operator[] (int index)
 }
 
 template <class T>
-void Uni_array<T>::operator= (Uni_array& uarr)
+Uni_array<T>& Uni_array<T>::operator= (Uni_array& uarr)     /*总感觉有点安全隐患。引用传进来没加const限制。万一不注意改了点可能导致bug*/
 {
     this->m_Capacity = uarr.m_Capacity;
     m_ptr =  new T[uarr.m_Capacity]();        /*深拷贝 申请另一块堆区内存*/
@@ -82,5 +87,5 @@ void Uni_array<T>::operator= (Uni_array& uarr)
     }
     printf("拷贝完辣！\n");
 
-    //return *this;
+    return *this;
 }
