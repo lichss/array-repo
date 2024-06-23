@@ -41,11 +41,12 @@ int main()
         cout << a2[0].m_float;pNEWL__;
         cout << a2[0].m_char;pNEWL__;
 
+        printf("二阶段测试通过\n");
 
     }
     
     
-        pNEWL__;
+    
     // {
     //     Uni_array<float> a1(6);
     //     a1.show(6);
